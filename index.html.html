@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Resume Craft - Printello Design</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f5f0ea; font-family: 'DM Sans', sans-serif; }
+
+.app-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0ea 0%, #ede8e0 100%);
+}
+
+.topbar {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+}
+
+.logo span { color: #c0392b; }
+
+.mode-tabs {
+  display: flex;
+  gap: 4px;
+  background: rgba(0,0,0,0.06);
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.mode-tab {
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-tab.active {
+  background: #fff;
+  color: #1a1a1a;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+.landing-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+
+.landing-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.landing-sub {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.raw-textarea {
+  width: 100%;
+  min-height: 260px;
+  padding: 24px;
+  border: 2px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.9);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  resize: vertical;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.raw-textarea:focus { border-color: #c0392b; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.btn-primary:hover { background: #333; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  color: #1a1a1a;
+  border: 2px solid rgba(0,0,0,0.15);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover { border-color: #1a1a1a; background: rgba(0,0,0,0.04); }
+
+.btn-accent {
+  padding: 12px 24px;
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-accent:hover { background: #a93226; }
+
+.landing-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.divider-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+  color: #999;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.divider-label::before, .divider-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+}
+
+.profession-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+
+.profession-card {
+  border-radius: 16px;
+  padding: 28px 20px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.profession-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.profession-card.selected {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--card-accent);
+  transform: translateY(-4px) scale(1.01);
+}
+
+.card-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+.card-label { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.card-tag { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 400; letter-spacing: 0.5px; }
+
+.builder-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 65px);
+}
+
+.form-panel {
+  background: #fff;
+  border-right: 1px solid rgba(0,0,0,0.08);
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+  position: sticky;
+  top: 65px;
+}
+
+.preview-panel {
+  background: #f0ebe2;
+  padding: 40px 32px;
+  overflow-y: auto;
+}
+
+.form-section {
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.form-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.field-group { margin-bottom: 14px; }
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+  letter-spacing: 0.2px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 9px 13px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fafafa;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.field-input:focus { border-color: var(--theme-accent, #c0392b); background: #fff; }
+
+.field-textarea {
+  width: 100%;
+  padding: 9px 13px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #fafafa;
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field-textarea:focus { border-color: var(--theme-accent, #c0392b); background: #fff; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.experience-block {
+  background: #f8f7f5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.block-index {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.btn-remove:hover { background: #fef2f2; }
+
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: transparent;
+  border: 1.5px dashed rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.15s;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.btn-add:hover { border-color: var(--theme-accent, #c0392b); color: var(--theme-accent, #c0392b); background: rgba(192,57,43,0.04); }
+
+.form-actions {
+  padding: 20px 28px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: sticky;
+  bottom: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.resume-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.resume-paper {
+  width: 100%;
+  max-width: 720px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.resume-header {
+  padding: 36px 40px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-header-accent {
+  position: absolute;
+  top: 0; right: 0;
+  width: 120px; height: 120px;
+  border-radius: 0 0 0 120px;
+}
+
+.resume-name {
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.resume-title {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 11.5px;
+  color: #555;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-item { display: flex; align-items: center; gap: 4px; }
+
+.resume-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 0 40px;
+}
+
+.resume-summary-band {
+  padding: 18px 40px;
+  color: #fff;
+}
+
+.resume-summary-text {
+  font-size: 12.5px;
+  line-height: 1.65;
+  font-style: italic;
+  opacity: 0.92;
+}
+
+.resume-skills-row {
+  padding: 14px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: rgba(0,0,0,0.02);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.skill-tag {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1.5px solid;
+}
+
+.resume-body { padding: 0 40px; }
+
+.resume-section { padding: 22px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+.resume-section:last-child { border-bottom: none; }
+
+.resume-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 16px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid;
+  display: inline-block;
+}
+
+.exp-entry { margin-bottom: 16px; }
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+.exp-position { font-size: 14px; font-weight: 700; }
+.exp-company { font-size: 12.5px; font-weight: 400; color: #555; }
+.exp-date { font-size: 11.5px; color: #888; white-space: nowrap; margin-left: 12px; }
+
+.exp-bullets { margin-top: 8px; padding-left: 16px; }
+.exp-bullet { font-size: 12.5px; margin-bottom: 4px; color: #333; line-height: 1.6; }
+
+.edu-entry { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.edu-degree { font-size: 13.5px; font-weight: 600; }
+.edu-inst { font-size: 12px; color: #555; }
+.edu-date { font-size: 11.5px; color: #888; }
+
+.cert-entry { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.cert-name { font-size: 13px; font-weight: 600; }
+.cert-issuer { font-size: 11.5px; color: #666; }
+.cert-date { font-size: 11.5px; color: #888; }
+
+@media print {
+  .app-shell, .topbar, .mode-tabs, .form-panel, .form-actions { display: none !important; }
+  .preview-panel { padding: 0; background: #fff; }
+  .resume-paper { box-shadow: none; max-width: 100%; border-radius: 0; }
+  body { background: #fff; }
+}
+
+@media (max-width: 900px) {
+  .builder-layout { grid-template-columns: 1fr; }
+  .form-panel { height: auto; position: static; }
+  .preview-panel { padding: 24px 16px; }
+}
+
+@media (max-width: 600px) {
+  .topbar { padding: 16px 20px; }
+  .landing-container { padding: 40px 20px; }
+  .profession-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="app-shell" id="app">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="logo">Resume<span>Craft by Printello Design</span></div>
+    <div class="mode-tabs">
+      <button class="mode-tab" id="tab-profession" onclick="switchTab('profession')">By Profession</button>
+      <button class="mode-tab" id="tab-manual" onclick="switchTab('manual')">Manual Form</button>
+    </div>
+  </div>
+
+  <!-- Landing view -->
+  <div id="view-landing">
+    <div class="landing-container">
+      <div class="landing-headline">Your Story,<br />Beautifully Told.</div>
+      <p class="landing-sub">Build one from scratch.</p>
+      <div class="landing-actions">
+        <button class="btn-secondary" onclick="handleManualMode()">Build with Own Details</button>
+      </div>
+      <div class="divider-label">or choose by profession</div>
+    </div>
+    <div id="profession-grid-landing" class="profession-grid"></div>
+  </div>
+
+  <!-- Profession selection view -->
+  <div id="view-profession" style="display:none;">
+    <div style="text-align:center;padding:48px 24px 20px;">
+      <div class="landing-headline" style="font-size:clamp(24px,4vw,40px);">Choose your profession</div>
+      <p class="landing-sub" style="margin-top:8px;">We'll pre-fill a tailored template with realistic data.</p>
+    </div>
+    <div id="profession-grid-profession" class="profession-grid"></div>
+  </div>
+
+  <!-- Builder view -->
+  <div id="view-builder" style="display:none;">
+    <div class="builder-layout">
+      <div class="form-panel" id="form-panel-container">
+        <!-- ManualForm rendered here -->
+        <div id="manual-form"></div>
+        <div class="form-actions">
+          <button class="btn-primary" onclick="downloadPdf()">⬇ Download PDF</button>
+          <button class="btn-secondary" onclick="downloadDocx()">⬇ Download DOCX</button>
+          <button style="margin-left:auto;background:none;border:none;cursor:pointer;color:#999;font-size:12px;" onclick="goBack()">← Back</button>
+        </div>
+      </div>
+      <div class="preview-panel">
+        <div id="resume-preview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const PROFESSIONS = [
+  { id: "software",   label: "Software Engineer",      icon: "⌨",  accent: "#1e3a5f", secondary: "#00d4ff", bg: "#0d1b2a", tag: "Monospace · Geometric" },
+  { id: "product",    label: "Product Manager",         icon: "◈",  accent: "#2d1b69", secondary: "#f59e0b", bg: "#1a0e40", tag: "Strategy · Vision" },
+  { id: "marketing",  label: "Marketing & Brand",       icon: "◎",  accent: "#7c1d3d", secondary: "#f97316", bg: "#2a0a18", tag: "Bold · Expressive" },
+  { id: "finance",    label: "Finance / Investment",    icon: "⬡",  accent: "#0f2d1a", secondary: "#22c55e", bg: "#071a0f", tag: "Structured · Precise" },
+  { id: "healthcare", label: "Healthcare / Nursing",    icon: "✦",  accent: "#0e3040", secondary: "#34d399", bg: "#071c24", tag: "Clean · Caring" },
+  { id: "legal",      label: "Legal / Law",             icon: "⚖",  accent: "#2a1c00", secondary: "#d4a017", bg: "#1a1100", tag: "Classic · Authoritative" },
+  { id: "creative",   label: "Creative / UX Design",   icon: "◉",  accent: "#3d0c1f", secondary: "#fb7185", bg: "#1f0610", tag: "Bold · Experimental" },
+  { id: "operations", label: "Operations & Supply",     icon: "⬢",  accent: "#1a2740", secondary: "#60a5fa", bg: "#0d1520", tag: "Efficient · Clear" },
+];
+
+const PROFESSION_THEMES = {
+  software:   { accent: "#00d4ff", dark: "#1e3a5f", light: "#e8f7ff", font: "'Space Mono', monospace",        headerFont: "'Syne', sans-serif",              summaryBg: "#1e3a5f" },
+  product:    { accent: "#f59e0b", dark: "#2d1b69", light: "#fffbeb", font: "'DM Sans', sans-serif",          headerFont: "'Syne', sans-serif",              summaryBg: "#2d1b69" },
+  marketing:  { accent: "#f97316", dark: "#7c1d3d", light: "#fff7ed", font: "'Lato', sans-serif",             headerFont: "'Playfair Display', serif",       summaryBg: "#7c1d3d" },
+  finance:    { accent: "#22c55e", dark: "#0f2d1a", light: "#f0fdf4", font: "'DM Sans', sans-serif",          headerFont: "'Cormorant Garamond', serif",     summaryBg: "#0f2d1a" },
+  healthcare: { accent: "#34d399", dark: "#0e3040", light: "#ecfdf5", font: "'Lato', sans-serif",             headerFont: "'DM Sans', sans-serif",           summaryBg: "#0e3040" },
+  legal:      { accent: "#d4a017", dark: "#2a1c00", light: "#fefce8", font: "'Cormorant Garamond', serif",    headerFont: "'Cormorant Garamond', serif",     summaryBg: "#2a1c00" },
+  creative:   { accent: "#fb7185", dark: "#3d0c1f", light: "#fff1f2", font: "'Syne', sans-serif",             headerFont: "'Playfair Display', serif",       summaryBg: "#3d0c1f" },
+  operations: { accent: "#60a5fa", dark: "#1a2740", light: "#eff6ff", font: "'DM Sans', sans-serif",          headerFont: "'Syne', sans-serif",              summaryBg: "#1a2740" },
+};
+
+const PLACEHOLDERS = {
+  software: {
+    name: "Alex Chen", title: "Senior Software Engineer", email: "alex.chen@dev.io", phone: "+1 (415) 832-9021",
+    location: "San Francisco, CA", linkedin: "linkedin.com/in/alexchen-dev",
+    summary: "Full-stack engineer with 7+ years building scalable distributed systems. Passionate about clean architecture, developer tooling, and open-source contributions. Led teams shipping products used by millions.",
+    skills: "TypeScript, React, Node.js, Kubernetes, AWS, PostgreSQL, GraphQL, Redis, CI/CD, System Design",
+    experience: [
+      { position: "Senior Software Engineer", company: "Stripe", dateRange: "2021 – Present", bullets: ["Architected payment orchestration layer handling $2B+ monthly volume with 99.99% uptime", "Reduced API latency by 40% via query optimization and intelligent caching strategies", "Mentored 4 junior engineers; led bi-weekly tech talks on distributed systems"] },
+      { position: "Software Engineer II", company: "Dropbox", dateRange: "2018 – 2021", bullets: ["Built real-time sync engine serving 700M files daily across mobile and desktop clients", "Migrated monolith to microservices reducing deployment time from 3 hours to 12 minutes", "Open-sourced internal testing framework adopted by 200+ teams globally"] },
+      { position: "Junior Developer", company: "Y Combinator Startup", dateRange: "2016 – 2018", bullets: ["Developed MVP from 0 to 10k users in 6 months using React and Firebase", "Implemented OAuth 2.0 and JWT-based auth system with MFA support", "Collaborated directly with founders on product roadmap and technical architecture"] },
+    ],
+    education: [{ degree: "B.S. Computer Science", institution: "UC Berkeley", date: "2016" }, { degree: "M.S. Software Engineering", institution: "Stanford University", date: "2018" }],
+    certifications: [{ name: "AWS Solutions Architect – Professional", issuer: "Amazon Web Services", date: "2023" }, { name: "Certified Kubernetes Administrator", issuer: "CNCF", date: "2022" }],
+  },
+  legal: {
+    name: "Victoria Harrington", title: "Corporate Attorney", email: "v.harrington@lawfirm.com", phone: "+1 (212) 555-8872",
+    location: "New York, NY", linkedin: "linkedin.com/in/victoriaharrington",
+    summary: "Seasoned corporate attorney with 10+ years advising Fortune 500 clients on M&A transactions, securities regulation, and complex commercial litigation. Admitted to practice in NY and CA.",
+    skills: "Mergers & Acquisitions, Securities Law, Contract Negotiation, Due Diligence, Corporate Governance, Litigation, Regulatory Compliance, IPO Advisory",
+    experience: [
+      { position: "Partner", company: "Sullivan & Cromwell LLP", dateRange: "2019 – Present", bullets: ["Led $4.2B cross-border acquisition for multinational tech client with 15-jurisdiction regulatory clearance", "Managed portfolio of 25+ active matters with combined deal value exceeding $12B annually", "Chaired firm's Pro Bono Committee; supervised 200+ hours of community legal aid annually"] },
+      { position: "Senior Associate", company: "Davis Polk & Wardwell", dateRange: "2014 – 2019", bullets: ["Advised on 12 IPOs raising aggregate proceeds of $3.8B on NYSE and NASDAQ", "Drafted and negotiated complex merger agreements, shareholder rights plans, and employment agreements", "Recognized as 'Rising Star' by Law360 three consecutive years (2016–2018)"] },
+    ],
+    education: [{ degree: "J.D., magna cum laude", institution: "Harvard Law School", date: "2013" }, { degree: "B.A. Political Science", institution: "Yale University", date: "2010" }],
+    certifications: [{ name: "New York State Bar", issuer: "NY Bar Association", date: "2013" }, { name: "California State Bar", issuer: "CA Bar Association", date: "2015" }],
+  },
+};
+
+const defaultPlaceholder = PLACEHOLDERS.software;
+
+function getPlaceholder(id) {
+  return PLACEHOLDERS[id] || {
+    ...defaultPlaceholder,
+    name: "Jordan Smith",
+    title: (PROFESSIONS.find(p => p.id === id) || {}).label || "Professional",
+    summary: "Accomplished professional with extensive experience driving results and leading high-performing teams. Proven track record of delivering measurable impact across dynamic environments.",
+    skills: "Leadership, Strategy, Communication, Problem Solving, Project Management, Data Analysis, Stakeholder Engagement",
+  };
+}
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+let state = {
+  mode: "landing",
+  rawText: "",
+  resumeData: null,
+  selectedProfession: null,
+  theme: PROFESSION_THEMES.software,
+  showPreview: false,
+};
+
+// ─── PARSE RAW TEXT ───────────────────────────────────────────────────────────
+
+function parseRawText(raw) {
+  const lines = raw.split("\n").map(l => l.trim()).filter(Boolean);
+  const result = {
+    name: "", title: "", email: "", phone: "", location: "", linkedin: "",
+    summary: "", skills: "",
+    experience: [],
+    education: [],
+    certifications: [],
+  };
+
+  const emailRe = /[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/;
+  const phoneRe = /[\+\(]?\d[\d\s\-\(\)]{6,}/;
+  const linkedinRe = /linkedin\.com\/in\/[\w-]+/i;
+  const dateRe = /\b(20\d\d|19\d\d)\b/;
+  const sectionRe = /^(experience|education|skills?|summary|certif|work history|employment|projects?)/i;
+
+  let currentSection = "header";
+  let currentExp = null;
+  let currentEdu = null;
+  let currentCert = null;
+  let headerDone = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (!result.email && emailRe.test(line)) { result.email = line.match(emailRe)[0]; continue; }
+    if (!result.phone && phoneRe.test(line)) { result.phone = line.match(phoneRe)[0].trim(); continue; }
+    if (!result.linkedin && linkedinRe.test(line)) { result.linkedin = line.match(linkedinRe)[0]; continue; }
+
+    if (sectionRe.test(line)) {
+      if (currentExp) { result.experience.push(currentExp); currentExp = null; }
+      if (currentEdu) { result.education.push(currentEdu); currentEdu = null; }
+      if (currentCert) { result.certifications.push(currentCert); currentCert = null; }
+
+      const sl = line.toLowerCase();
+      if (/experience|work|employ/.test(sl)) currentSection = "experience";
+      else if (/education/.test(sl)) currentSection = "education";
+      else if (/skill/.test(sl)) currentSection = "skills";
+      else if (/summar/.test(sl)) currentSection = "summary";
+      else if (/certif/.test(sl)) currentSection = "certifications";
+      headerDone = true;
+      continue;
+    }
+
+    if (!headerDone) {
+      if (!result.name && line.length < 50 && /[A-Z][a-z]+ [A-Z]/.test(line)) { result.name = line; continue; }
+      if (!result.title && result.name && line.length < 60 && !dateRe.test(line)) { result.title = line; continue; }
+      if (!result.location && /,\s*(CA|NY|TX|FL|WA|IL|GA|MA|CO|OH|NC|VA|AZ|OR|MN|PA|DC|remote)/i.test(line)) { result.location = line; continue; }
+    }
+
+    if (currentSection === "summary") { result.summary += (result.summary ? " " : "") + line; }
+    else if (currentSection === "skills") { result.skills += (result.skills ? ", " : "") + line.replace(/[•·]/g, "").trim(); }
+    else if (currentSection === "experience") {
+      const hasDash = /[-–—]/.test(line) && dateRe.test(line);
+      const isBullet = /^[•\-\*]/.test(line);
+      if (!isBullet && !hasDash && !currentExp && line.length < 80) {
+        if (currentExp) result.experience.push(currentExp);
+        currentExp = { position: line, company: "", dateRange: "", bullets: [] };
+      } else if (!isBullet && currentExp && !currentExp.company && !hasDash) {
+        currentExp.company = line;
+      } else if (hasDash && currentExp) {
+        currentExp.dateRange = line;
+      } else if (isBullet && currentExp) {
+        currentExp.bullets.push(line.replace(/^[•\-\*]\s*/, ""));
+      }
+    } else if (currentSection === "education") {
+      if (!currentEdu) { currentEdu = { degree: line, institution: "", date: "" }; }
+      else if (!currentEdu.institution) { currentEdu.institution = line; }
+      else if (!currentEdu.date && dateRe.test(line)) { currentEdu.date = line.match(dateRe)[0]; result.education.push(currentEdu); currentEdu = null; }
+    } else if (currentSection === "certifications") {
+      if (!currentCert) { currentCert = { name: line, issuer: "", date: "" }; }
+      else if (!currentCert.issuer) { currentCert.issuer = line; }
+      else if (!currentCert.date && dateRe.test(line)) { currentCert.date = line.match(dateRe)[0]; result.certifications.push(currentCert); currentCert = null; }
+    }
+  }
+
+  if (currentExp) result.experience.push(currentExp);
+  if (currentEdu) result.education.push(currentEdu);
+  if (currentCert) result.certifications.push(currentCert);
+
+  return result;
+}
+
+// ─── RENDER HELPERS ───────────────────────────────────────────────────────────
+
+function esc(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderProfessionCards(containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = PROFESSIONS.map(prof => `
+    <div
+      class="profession-card${state.selectedProfession === prof.id ? ' selected' : ''}"
+      style="background:linear-gradient(135deg,${prof.bg} 0%,${prof.accent}cc 100%);--card-accent:${prof.secondary};"
+      onclick="handleProfessionSelect('${prof.id}')"
+    >
+      <span class="card-icon">${prof.icon}</span>
+      <div class="card-label">${esc(prof.label)}</div>
+      <div class="card-tag">${esc(prof.tag)}</div>
+    </div>
+  `).join("");
+}
+
+function renderResumePreview() {
+  const data = state.resumeData || {};
+  const t = state.theme;
+  const skills = (data.skills || "").split(",").map(s => s.trim()).filter(Boolean);
+
+  const contactItems = [
+    data.phone    ? `<span class="contact-item">📞 ${esc(data.phone)}</span>` : "",
+    data.email    ? `<span class="contact-item">✉ ${esc(data.email)}</span>` : "",
+    data.location ? `<span class="contact-item">📍 ${esc(data.location)}</span>` : "",
+    data.linkedin ? `<span class="contact-item">🔗 ${esc(data.linkedin)}</span>` : "",
+  ].filter(Boolean).join("");
+
+  const skillsHtml = skills.length ? `
+    <div class="resume-skills-row">
+      ${skills.map(s => `<span class="skill-tag" style="color:${t.dark};border-color:${t.accent};background:${t.light};">${esc(s)}</span>`).join("")}
+    </div>` : "";
+
+  const expHtml = (data.experience || []).length ? `
+    <div class="resume-section">
+      <div class="resume-section-title" style="color:${t.dark};border-color:${t.accent};">Experience</div>
+      ${(data.experience || []).map(exp => `
+        <div class="exp-entry">
+          <div class="exp-header">
+            <div>
+              <div class="exp-position" style="color:${t.dark};">${esc(exp.position)}</div>
+              <div class="exp-company">${esc(exp.company)}</div>
+            </div>
+            <div class="exp-date">${esc(exp.dateRange)}</div>
+          </div>
+          ${(exp.bullets || []).filter(b => b).length ? `
+            <ul class="exp-bullets">
+              ${(exp.bullets || []).filter(b => b).map(b => `<li class="exp-bullet">${esc(b)}</li>`).join("")}
+            </ul>` : ""}
+        </div>`).join("")}
+    </div>` : "";
+
+  const eduHtml = (data.education || []).length ? `
+    <div class="resume-section">
+      <div class="resume-section-title" style="color:${t.dark};border-color:${t.accent};">Education</div>
+      ${(data.education || []).map(edu => `
+        <div class="edu-entry">
+          <div>
+            <div class="edu-degree">${esc(edu.degree)}</div>
+            <div class="edu-inst">${esc(edu.institution)}</div>
+          </div>
+          <div class="edu-date">${esc(edu.date)}</div>
+        </div>`).join("")}
+    </div>` : "";
+
+  const certHtml = (data.certifications || []).length ? `
+    <div class="resume-section">
+      <div class="resume-section-title" style="color:${t.dark};border-color:${t.accent};">Certifications</div>
+      ${(data.certifications || []).map(cert => `
+        <div class="cert-entry">
+          <div>
+            <div class="cert-name">${esc(cert.name)}</div>
+            <div class="cert-issuer">${esc(cert.issuer)}</div>
+          </div>
+          <div class="cert-date">${esc(cert.date)}</div>
+        </div>`).join("")}
+    </div>` : "";
+
+  document.getElementById("resume-preview").innerHTML = `
+    <div class="resume-wrapper">
+      <div class="resume-paper" style="font-family:${t.font};">
+        <div class="resume-header" style="border-top:5px solid ${t.accent};">
+          <div class="resume-header-accent" style="background:${t.accent};opacity:0.12;"></div>
+          <div class="resume-name" style="font-family:${t.headerFont};color:${t.dark};">${esc(data.name) || "Your Name"}</div>
+          <div class="resume-title" style="color:${t.accent};font-family:${t.font};">${esc(data.title) || "Professional Title"}</div>
+          <div class="resume-contact">${contactItems}</div>
+        </div>
+        ${data.summary ? `<div class="resume-summary-band" style="background:${t.summaryBg};"><div class="resume-summary-text">${esc(data.summary)}</div></div>` : ""}
+        ${skillsHtml}
+        <div class="resume-body">
+          ${expHtml}
+          ${eduHtml}
+          ${certHtml}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderManualForm() {
+  const data = state.resumeData || {};
+  const t = state.theme;
+
+  const expBlocks = (data.experience || []).map((exp, i) => `
+    <div class="experience-block">
+      <div class="block-header">
+        <span class="block-index">Position ${i + 1}</span>
+        <button class="btn-remove" onclick="removeExp(${i})">Remove</button>
+      </div>
+      <div class="two-col">
+        <div class="field-group">
+          <label class="field-label">Job Title</label>
+          <input class="field-input" value="${esc(exp.position)}" oninput="updateExp(${i},'position',this.value)" placeholder="Senior Engineer" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Company</label>
+          <input class="field-input" value="${esc(exp.company)}" oninput="updateExp(${i},'company',this.value)" placeholder="Company Inc." />
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Date Range</label>
+        <input class="field-input" value="${esc(exp.dateRange)}" oninput="updateExp(${i},'dateRange',this.value)" placeholder="Jan 2021 – Present" />
+      </div>
+      ${(exp.bullets || ["","",""]).map((b, bi) => `
+        <div class="field-group">
+          <label class="field-label">Bullet ${bi + 1}</label>
+          <input class="field-input" value="${esc(b)}" oninput="updateBullet(${i},${bi},this.value)" placeholder="Describe an achievement..." />
+        </div>`).join("")}
+    </div>`).join("");
+
+  const eduBlocks = (data.education || []).map((edu, i) => `
+    <div class="experience-block">
+      <div class="block-header">
+        <span class="block-index">Education ${i + 1}</span>
+        <button class="btn-remove" onclick="removeEdu(${i})">Remove</button>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Degree</label>
+        <input class="field-input" value="${esc(edu.degree)}" oninput="updateEdu(${i},'degree',this.value)" placeholder="B.S. Computer Science" />
+      </div>
+      <div class="two-col">
+        <div class="field-group">
+          <label class="field-label">Institution</label>
+          <input class="field-input" value="${esc(edu.institution)}" oninput="updateEdu(${i},'institution',this.value)" placeholder="University Name" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Year</label>
+          <input class="field-input" value="${esc(edu.date)}" oninput="updateEdu(${i},'date',this.value)" placeholder="2020" />
+        </div>
+      </div>
+    </div>`).join("");
+
+  const certBlocks = (data.certifications || []).map((cert, i) => `
+    <div class="experience-block">
+      <div class="block-header">
+        <span class="block-index">Cert ${i + 1}</span>
+        <button class="btn-remove" onclick="removeCert(${i})">Remove</button>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Certification Name</label>
+        <input class="field-input" value="${esc(cert.name)}" oninput="updateCert(${i},'name',this.value)" placeholder="AWS Solutions Architect" />
+      </div>
+      <div class="two-col">
+        <div class="field-group">
+          <label class="field-label">Issuer</label>
+          <input class="field-input" value="${esc(cert.issuer)}" oninput="updateCert(${i},'issuer',this.value)" placeholder="Amazon" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Date</label>
+          <input class="field-input" value="${esc(cert.date)}" oninput="updateCert(${i},'date',this.value)" placeholder="2023" />
+        </div>
+      </div>
+    </div>`).join("");
+
+  document.getElementById("manual-form").innerHTML = `
+    <div style="--theme-accent:${t.accent};">
+      <div class="form-section">
+        <div class="form-section-title">Basic Info</div>
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">Full Name</label>
+            <input class="field-input" value="${esc(data.name)}" oninput="setField('name',this.value)" placeholder="Your Name" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Job Title</label>
+            <input class="field-input" value="${esc(data.title)}" oninput="setField('title',this.value)" placeholder="Your Title" />
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">Email</label>
+            <input class="field-input" value="${esc(data.email)}" oninput="setField('email',this.value)" placeholder="email@example.com" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Phone</label>
+            <input class="field-input" value="${esc(data.phone)}" oninput="setField('phone',this.value)" placeholder="+1 (555) 000-0000" />
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">Location</label>
+            <input class="field-input" value="${esc(data.location)}" oninput="setField('location',this.value)" placeholder="City, State" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">LinkedIn / Website</label>
+            <input class="field-input" value="${esc(data.linkedin)}" oninput="setField('linkedin',this.value)" placeholder="linkedin.com/in/you" />
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Summary</div>
+        <div class="field-group">
+          <textarea class="field-textarea" oninput="setField('summary',this.value)" rows="4" placeholder="Write a professional summary...">${esc(data.summary)}</textarea>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Skills</div>
+        <div class="field-group">
+          <label class="field-label">Comma-separated skills</label>
+          <input class="field-input" value="${esc(data.skills)}" oninput="setField('skills',this.value)" placeholder="React, Python, Leadership..." />
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Experience</div>
+        ${expBlocks}
+        ${(data.experience || []).length < 4 ? `<button class="btn-add" onclick="addExp()">+ Add Experience</button>` : ""}
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Education</div>
+        ${eduBlocks}
+        ${(data.education || []).length < 3 ? `<button class="btn-add" onclick="addEdu()">+ Add Education</button>` : ""}
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Certifications</div>
+        ${certBlocks}
+        ${(data.certifications || []).length < 4 ? `<button class="btn-add" onclick="addCert()">+ Add Certification</button>` : ""}
+      </div>
+    </div>`;
+}
+
+// ─── ACTIONS ─────────────────────────────────────────────────────────────────
+
+function setField(field, val) {
+  state.resumeData = { ...state.resumeData, [field]: val };
+  renderResumePreview();
+}
+
+function updateExp(i, field, val) {
+  const exps = [...(state.resumeData.experience || [])];
+  exps[i] = { ...exps[i], [field]: val };
+  state.resumeData = { ...state.resumeData, experience: exps };
+  renderResumePreview();
+}
+
+function updateBullet(ei, bi, val) {
+  const exps = [...(state.resumeData.experience || [])];
+  const bullets = [...(exps[ei].bullets || [])];
+  bullets[bi] = val;
+  exps[ei] = { ...exps[ei], bullets };
+  state.resumeData = { ...state.resumeData, experience: exps };
+  renderResumePreview();
+}
+
+function addExp() {
+  const exps = [...(state.resumeData.experience || []), { position: "", company: "", dateRange: "", bullets: ["","",""] }];
+  state.resumeData = { ...state.resumeData, experience: exps };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function removeExp(i) {
+  const exps = (state.resumeData.experience || []).filter((_, idx) => idx !== i);
+  state.resumeData = { ...state.resumeData, experience: exps };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function updateEdu(i, field, val) {
+  const edus = [...(state.resumeData.education || [])];
+  edus[i] = { ...edus[i], [field]: val };
+  state.resumeData = { ...state.resumeData, education: edus };
+  renderResumePreview();
+}
+
+function addEdu() {
+  const edus = [...(state.resumeData.education || []), { degree: "", institution: "", date: "" }];
+  state.resumeData = { ...state.resumeData, education: edus };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function removeEdu(i) {
+  const edus = (state.resumeData.education || []).filter((_, idx) => idx !== i);
+  state.resumeData = { ...state.resumeData, education: edus };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function updateCert(i, field, val) {
+  const certs = [...(state.resumeData.certifications || [])];
+  certs[i] = { ...certs[i], [field]: val };
+  state.resumeData = { ...state.resumeData, certifications: certs };
+  renderResumePreview();
+}
+
+function addCert() {
+  const certs = [...(state.resumeData.certifications || []), { name: "", issuer: "", date: "" }];
+  state.resumeData = { ...state.resumeData, certifications: certs };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function removeCert(i) {
+  const certs = (state.resumeData.certifications || []).filter((_, idx) => idx !== i);
+  state.resumeData = { ...state.resumeData, certifications: certs };
+  renderManualForm();
+  renderResumePreview();
+}
+
+function handleCreateFromRaw() {
+  const raw = document.getElementById("raw-textarea").value;
+  if (!raw.trim()) return;
+  state.rawText = raw;
+  state.resumeData = parseRawText(raw);
+  state.theme = PROFESSION_THEMES.software;
+  state.showPreview = true;
+  showBuilder();
+}
+
+function handleProfessionSelect(id) {
+  state.selectedProfession = id;
+  state.resumeData = getPlaceholder(id);
+  state.theme = PROFESSION_THEMES[id] || PROFESSION_THEMES.software;
+  state.mode = "profession";
+  state.showPreview = true;
+  showBuilder();
+}
+
+function handleManualMode() {
+  if (!state.resumeData) {
+    state.resumeData = {
+      name: "", title: "", email: "", phone: "", location: "", linkedin: "",
+      summary: "", skills: "",
+      experience: [{ position: "", company: "", dateRange: "", bullets: ["","",""] }],
+      education: [{ degree: "", institution: "", date: "" }],
+      certifications: [],
+    };
+  }
+  state.mode = "manual";
+  state.showPreview = true;
+  showBuilder();
+}
+
+function switchTab(tab) {
+  // Update active tab button
+  document.querySelectorAll(".mode-tab").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + tab).classList.add("active");
+
+  if (tab === "landing") {
+    state.mode = "landing";
+    state.showPreview = false;
+    showLanding();
+  } else if (tab === "profession") {
+    state.mode = "profession";
+    if (!state.selectedProfession) state.showPreview = false;
+    if (state.showPreview) {
+      showBuilder();
+    } else {
+      showProfessionSelector();
+    }
+  } else if (tab === "manual") {
+    handleManualMode();
+  }
+}
+
+function showLanding() {
+  document.getElementById("view-landing").style.display = "";
+  document.getElementById("view-profession").style.display = "none";
+  document.getElementById("view-builder").style.display = "none";
+  renderProfessionCards("profession-grid-landing");
+  document.getElementById("tab-landing").classList.add("active");
+  document.getElementById("tab-profession").classList.remove("active");
+  document.getElementById("tab-manual").classList.remove("active");
+}
+
+function showProfessionSelector() {
+  document.getElementById("view-landing").style.display = "none";
+  document.getElementById("view-profession").style.display = "";
+  document.getElementById("view-builder").style.display = "none";
+  renderProfessionCards("profession-grid-profession");
+}
+
+function showBuilder() {
+  document.getElementById("view-landing").style.display = "none";
+  document.getElementById("view-profession").style.display = "none";
+  document.getElementById("view-builder").style.display = "";
+  renderManualForm();
+  renderResumePreview();
+  // Sync tab active state
+  document.querySelectorAll(".mode-tab").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + state.mode).classList.add("active");
+}
+
+function goBack() {
+  state.showPreview = false;
+  if (state.mode === "profession") {
+    showProfessionSelector();
+    document.querySelectorAll(".mode-tab").forEach(b => b.classList.remove("active"));
+    document.getElementById("tab-profession").classList.add("active");
+  } else {
+    showLanding();
+  }
+}
+
+// ─── DOWNLOAD PDF ────────────────────────────────────────────────────────────
+
+function downloadPdf() {
+  const data = state.resumeData || {};
+  const previewHtml = document.getElementById("resume-preview").innerHTML;
+
+  // Collect all stylesheet text from the current page
+  let styles = "";
+  for (const sheet of document.styleSheets) {
+    try {
+      for (const rule of sheet.cssRules) {
+        styles += rule.cssText + "\n";
+      }
+    } catch(e) {}
+  }
+
+  const win = window.open("", "_blank");
+  win.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${(data.name || "Resume")} - Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fff; margin: 0; padding: 0; }
+${styles}
+.resume-wrapper { padding: 0; }
+.resume-paper { box-shadow: none; max-width: 100%; border-radius: 0; width: 100%; }
+@media print {
+  body { background: #fff; margin: 0; padding: 0; }
+  .resume-paper { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+${previewHtml}
+<script>
+window.onload = function() {
+  setTimeout(function() { window.print(); window.close(); }, 800);
+};
+<\/script>
+</body>
+</html>`);
+  win.document.close();
+}
+
+// ─── DOWNLOAD DOCX ───────────────────────────────────────────────────────────
+
+function downloadDocx() {
+  const data = state.resumeData || {};
+  const skills = (data.skills || "").split(",").map(s => s.trim()).filter(Boolean);
+
+  const expHtml = (data.experience || []).map(e => `
+    <p style="margin-bottom:2px"><b>${e.position || ""}</b> — ${e.company || ""} <span style="float:right;color:#888">${e.dateRange || ""}</span></p>
+    <ul style="margin:4px 0 12px 18px">${(e.bullets || []).map(b => b ? `<li>${b}</li>` : "").join("")}</ul>
+  `).join("");
+
+  const eduHtml = (data.education || []).map(e => `
+    <p style="margin-bottom:6px"><b>${e.degree || ""}</b> — ${e.institution || ""} <span style="float:right;color:#888">${e.date || ""}</span></p>
+  `).join("");
+
+  const certHtml = (data.certifications || []).map(c => `
+    <p style="margin-bottom:6px"><b>${c.name || ""}</b> — ${c.issuer || ""} <span style="float:right;color:#888">${c.date || ""}</span></p>
+  `).join("");
+
+  const html = `<html><head><meta charset="UTF-8"></head><body style="font-family:Arial;font-size:12pt;margin:40px">
+    <h1 style="margin-bottom:4px">${data.name || "Resume"}</h1>
+    <p style="color:#555;margin-bottom:4px">${data.title || ""}</p>
+    <p style="color:#777;font-size:10pt">${[data.phone, data.email, data.location, data.linkedin].filter(Boolean).join(" | ")}</p>
+    <hr style="margin:16px 0"/>
+    ${data.summary ? `<p style="font-style:italic;margin-bottom:16px">${data.summary}</p>` : ""}
+    ${skills.length ? `<p style="margin-bottom:16px"><b>Skills:</b> ${skills.join(" · ")}</p>` : ""}
+    ${expHtml ? `<h2 style="font-size:13pt;border-bottom:1px solid #ccc;padding-bottom:4px">Experience</h2>${expHtml}` : ""}
+    ${eduHtml ? `<h2 style="font-size:13pt;border-bottom:1px solid #ccc;padding-bottom:4px">Education</h2>${eduHtml}` : ""}
+    ${certHtml ? `<h2 style="font-size:13pt;border-bottom:1px solid #ccc;padding-bottom:4px">Certifications</h2>${certHtml}` : ""}
+  </body></html>`;
+
+  const blob = new Blob(["\ufeff" + html], { type: "application/msword" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${(data.name || "resume").replace(/\s+/g, "_")}_resume.doc`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+showLanding();
+</script>
+</body>
+</html>
